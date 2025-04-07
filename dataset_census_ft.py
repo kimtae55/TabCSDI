@@ -221,6 +221,7 @@ def get_dataloader(seed=1, nfold=5, batch_size=16, missing_ratio=0.1):
     train_dataset = tabular_Dataset(
         use_index_list=train_index, missing_ratio=missing_ratio, seed=seed
     )
+
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=1)
 
     valid_dataset = tabular_Dataset(

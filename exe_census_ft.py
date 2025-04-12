@@ -1,14 +1,25 @@
+# Useful quick commands 
+
+# View results.pk:
+# data = pickle.load(open("your_file.pk", "rb"))
+# 
+# Run model/eval:
+# python exe_census_ft.py --device cpu --nfold 5 
+
 import argparse
 import torch
 import datetime
 import json
 import yaml
 import os
+import time 
 
 from src.main_model_table_ft import TabCSDI
 from src.utils_table import train, evaluate_ft
 
 from dataset_census_ft import get_dataloader
+
+start = time.time()
 
 parser = argparse.ArgumentParser(description="TabCSDI")
 parser.add_argument("--config", type=str, default="census_ft.yaml")
@@ -64,3 +75,7 @@ print("---------------Start testing---------------")
 evaluate_ft(
     exe_name, model, test_loader, nsample=args.nsample, scaler=1, foldername=foldername
 )
+
+end = time.time()
+with open(foldername + "time_elapsed.txt", "w") as f:
+    f.write(f"Elapsed time: {end-start:.4f} seconds\n")

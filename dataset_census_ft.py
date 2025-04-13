@@ -77,7 +77,7 @@ def process_func(path: str, cat_list, missing_ratio=0.1, encode=True):
 
         new_observed_values = new_df.values
         new_observed_values = np.nan_to_num(new_observed_values)
-        new_observed_values = new_observed_values.astype(np.float)
+        new_observed_values = new_observed_values.astype(float)
 
         with open("./data_census_ft/transformed_columns.pk", "wb") as f:
             pickle.dump([cont_list, num_cate_list], f)
